@@ -2,65 +2,178 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#073b25">
-  <meta name="description" content="Concursul de Crăciun al Liceului Teoretic «Panait Cerna» Brăila – Magia Sărbătorilor în Liceul Nostru.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#06351f">
+  <meta name="description" content="Concursul de Crăciun al Liceului Teoretic „Panait Cerna” Brăila – Magia Sărbătorilor în Liceul Nostru. Decorăm. Creăm. Câștigăm!">
+  <meta property="og:title" content="Concursul de Crăciun | Panait Cerna Brăila">
+  <meta property="og:description" content="Decorăm. Creăm. Câștigăm! Calendar, reguli și premii.">
+  <meta property="og:type" content="website">
   <title>Concursul de Crăciun | Panait Cerna Brăila</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="snow snow-one">✦</div><div class="snow snow-two">❄</div><div class="snow snow-three">✧</div>
+  <canvas id="snow" aria-hidden="true"></canvas>
+
+  <!-- Ghirlandă de luminițe -->
+  <ul class="lights" aria-hidden="true">
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+  </ul>
+
   <header class="top">
-    <div class="school">LICEUL TEORETIC „PANAIT CERNA” BRĂILA</div>
-    <div class="divider"><span>❄</span></div>
+    <p class="school">Liceul Teoretic „Panait Cerna” Brăila</p>
+    <div class="divider" aria-hidden="true"><span>❄</span></div>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="eyebrow">EDIȚIA 2026</div>
-      <div class="wood">
-        <p class="small-title">CONCURSUL DE</p>
-        <h1>CRĂCIUN</h1>
-        <p class="subtitle">„Magia Sărbătorilor<br>în Liceul Nostru”</p>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="titlu">
+      <span class="eyebrow">Ediția 2026</span>
+      <h1 id="titlu" class="sr-only">Concursul de Crăciun – „Magia Sărbătorilor în Liceul Nostru”. Decorăm. Creăm. Câștigăm!</h1>
+      <div class="logo-frame">
+        <img class="logo" src="logo.jpg"
+             srcset="logo-small.jpg 560w, logo.jpg 1000w" sizes="(max-width: 560px) 94vw, 520px"
+             width="1000" height="1000"
+             alt="Concursul de Crăciun – Magia Sărbătorilor în Liceul Nostru. Decorăm. Creăm. Câștigăm!"
+             fetchpriority="high">
       </div>
-      <div class="ribbon">DECORĂM. CREĂM. CÂȘTIGĂM!</div>
       <p class="intro">Dragi elevi și profesori diriginți, transformați sala voastră de clasă într-un colț de poveste și câștigați titlul de <strong>„Cea mai frumos ornată clasă a liceului”</strong>!</p>
+      <a class="cta" href="#calendar">Vezi calendarul <span aria-hidden="true">↓</span></a>
     </section>
 
-    <section class="section">
-      <h2><span>✦</span> Calendarul competiției</h2>
-      <div class="timeline">
-        <article class="event"><div class="event-icon">▦</div><div><strong>1–4 DECEMBRIE</strong><p>Înscrierea claselor</p><small>Șeful clasei anunță coordonatorul proiectului.</small></div></article>
-        <article class="event"><div class="event-icon">🎄</div><div><strong>7–15 DECEMBRIE</strong><p>Perioada de decorare</p><small>Decorarea se face în afara orelor de curs.</small></div></article>
-        <article class="event"><div class="event-icon">☷</div><div><strong>16–17 DECEMBRIE</strong><p>Vizita juriului și evaluarea claselor</p></div></article>
-        <article class="event"><div class="event-icon">🏆</div><div><strong>18 DECEMBRIE</strong><p>Festivitatea de premiere!</p></div></article>
+    <!-- COUNTDOWN -->
+    <section class="countdown reveal" aria-live="polite">
+      <p class="cd-label" id="cd-label">Următoarea etapă</p>
+      <p class="cd-name" id="cd-name">Înscrierea claselor</p>
+      <div class="cd-grid" id="cd-grid">
+        <div><b id="cd-d">0</b><span>zile</span></div>
+        <div><b id="cd-h">0</b><span>ore</span></div>
+        <div><b id="cd-m">0</b><span>min</span></div>
+        <div><b id="cd-s">0</b><span>sec</span></div>
       </div>
     </section>
 
-    <section class="section rules">
-      <h2><span>✦</span> Reguli de bază</h2>
+    <!-- CALENDAR -->
+    <section class="section reveal" id="calendar">
+      <h2><span aria-hidden="true">✦</span> Calendarul competiției <span aria-hidden="true">✦</span></h2>
+      <ol class="timeline">
+        <li class="event" data-start="2026-12-01" data-end="2026-12-04" data-name="Înscrierea claselor">
+          <div class="event-icon" aria-hidden="true">🗓️</div>
+          <div class="event-body">
+            <strong class="date">1–4 Decembrie</strong>
+            <p>Înscrierea claselor</p>
+            <small>Șeful clasei anunță coordonatorul proiectului.</small>
+          </div>
+          <span class="badge" aria-hidden="true"></span>
+        </li>
+        <li class="event" data-start="2026-12-07" data-end="2026-12-15" data-name="Perioada de decorare">
+          <div class="event-icon" aria-hidden="true">🎄</div>
+          <div class="event-body">
+            <strong class="date">7–15 Decembrie</strong>
+            <p>Perioada de decorare</p>
+            <small>Decorarea se face în afara orelor de curs.</small>
+          </div>
+          <span class="badge" aria-hidden="true"></span>
+        </li>
+        <li class="event" data-start="2026-12-16" data-end="2026-12-17" data-name="Vizita juriului și evaluarea claselor">
+          <div class="event-icon" aria-hidden="true">📋</div>
+          <div class="event-body">
+            <strong class="date">16–17 Decembrie</strong>
+            <p>Vizita juriului și evaluarea claselor</p>
+          </div>
+          <span class="badge" aria-hidden="true"></span>
+        </li>
+        <li class="event" data-start="2026-12-18" data-end="2026-12-18" data-name="Festivitatea de premiere">
+          <div class="event-icon" aria-hidden="true">🏆</div>
+          <div class="event-body">
+            <strong class="date">18 Decembrie</strong>
+            <p>Festivitatea de premiere!</p>
+          </div>
+          <span class="badge" aria-hidden="true"></span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- REGULI -->
+    <section class="section reveal" id="reguli">
+      <h2><span aria-hidden="true">✦</span> Reguli de bază <span aria-hidden="true">✦</span></h2>
       <div class="rule-grid">
-        <article class="rule"><b>01 · SIGURANȚA PE PRIMUL LOC</b><p>Folosiți doar instalații LED cu baterii. Fără lumânări, artificii sau instalații băgate în priză nesupravegheate!</p></article>
-        <article class="rule"><b>02 · PROTEJĂM ȘCOALA</b><p>Lipiți decorațiunile doar cu bandă de hârtie (de mascare) sau gută. Fără superglue sau bandă adezivă care deteriorează pereții sau tabla electronică.</p></article>
-        <article class="rule"><b>03 · ECO & HANDMADE</b><p>Cel puțin 25% dintre ornamente trebuie să fie create manual sau din materiale reciclabile.</p></article>
-        <article class="rule"><b>04 · PREZENTAREA</b><p>La venirea juriului, aveți la dispoziție maximum 2 minute pentru a vă prezenta conceptul.</p></article>
+        <article class="rule">
+          <div class="rule-num" aria-hidden="true">01</div>
+          <div><h3>Siguranța pe primul loc</h3>
+          <p>Folosiți doar instalații LED cu baterii. Fără lumânări, artificii sau instalații băgate în priză nesupravegheate!</p></div>
+        </article>
+        <article class="rule">
+          <div class="rule-num" aria-hidden="true">02</div>
+          <div><h3>Protejăm școala</h3>
+          <p>Lipiți decorațiunile doar cu bandă de hârtie (de mascare) sau gută. Fără superglue sau bandă adezivă care deteriorează pereții sau tabla electronică.</p></div>
+        </article>
+        <article class="rule">
+          <div class="rule-num" aria-hidden="true">03</div>
+          <div><h3>Eco &amp; handmade</h3>
+          <p>Cel puțin 25% dintre ornamente trebuie să fie create manual sau din materiale reciclabile.</p></div>
+        </article>
+        <article class="rule">
+          <div class="rule-num" aria-hidden="true">04</div>
+          <div><h3>Prezentarea</h3>
+          <p>La venirea juriului, aveți la dispoziție maximum 2 minute pentru a vă prezenta conceptul.</p></div>
+        </article>
       </div>
     </section>
 
-    <section class="section prizes">
-      <h2><span>✦</span> Premii și vouchere VIP</h2>
-      <div class="prize"><div class="medal">🥇</div><div><strong>Locurile I, II și III</strong><p>Diplome și premii speciale pentru clasă.</p></div></div>
-      <div class="prize"><div class="medal">🌿</div><div><strong>Mențiunea „Cea mai Eco clasă”</strong><p>Voucher VIP – O zi fără ascultare și teste neanunțate.</p></div></div>
-      <div class="prize"><div class="medal">🚪</div><div><strong>Mențiunea „Cea mai originală ușă”</strong><p>Voucher VIP – Ziua fără uniformă / Dress Code Tematic (Christmas Sweater Day).</p></div></div>
-      <div class="prize"><div class="medal">⭐</div><div><strong>Premiul de popularitate</strong><p>Votat pe pagina de Facebook a liceului. Voucher VIP – O oră de dirigenție Movie & Chill, cu film și gustări.</p></div></div>
+    <!-- PREMII -->
+    <section class="section reveal" id="premii">
+      <h2><span aria-hidden="true">✦</span> Premii și vouchere VIP <span aria-hidden="true">✦</span></h2>
+      <div class="prizes">
+        <article class="prize prize-main">
+          <div class="medal" aria-hidden="true">🥇</div>
+          <div><strong>Locurile I, II și III</strong><p>Diplome și premii speciale pentru clasă.</p></div>
+        </article>
+        <article class="prize">
+          <div class="medal" aria-hidden="true">🌿</div>
+          <div><strong>Mențiunea „Cea mai Eco clasă”</strong><p>Voucher VIP – O zi fără ascultare și teste neanunțate.</p></div>
+        </article>
+        <article class="prize">
+          <div class="medal" aria-hidden="true">🚪</div>
+          <div><strong>Mențiunea „Cea mai originală ușă”</strong><p>Voucher VIP – Ziua fără uniformă / Dress Code Tematic (Christmas Sweater Day).</p></div>
+        </article>
+        <article class="prize">
+          <div class="medal" aria-hidden="true">⭐</div>
+          <div><strong>Premiul de popularitate</strong><p>Votat pe pagina de Facebook a liceului. Voucher VIP – O oră de dirigenție Movie &amp; Chill, cu film și gustări.</p></div>
+        </article>
+      </div>
     </section>
 
-    <section class="bottom">
-      <div class="coordinator"><span>COORDONATOR</span><strong>Prof. Rădulescu Mihai</strong></div>
-      <div class="callout">Pregătiți-vă ideile, adunați-vă echipa și aduceți magia Crăciunului în liceu!</div>
+    <!-- FINAL -->
+    <section class="bottom reveal">
+      <div class="plank">
+        <span>Coordonator</span>
+        <strong>Prof. Rădulescu Mihai</strong>
+      </div>
+      <p class="callout">Pregătiți-vă ideile, adunați-vă echipa și aduceți magia Crăciunului în liceu!</p>
+      <button class="share" id="share" type="button">Trimite concursul mai departe <span aria-hidden="true">🎁</span></button>
     </section>
   </main>
-  <footer>© 2026 · Liceul Teoretic „Panait Cerna” Brăila <span>Făcut cu spirit de sărbătoare ✦</span></footer>
+
+  <footer>
+    © 2026 · Liceul Teoretic „Panait Cerna” Brăila
+    <span>Făcut cu spirit de sărbătoare ✦</span>
+  </footer>
+
+  <!-- Butonul de muzică -->
+  <div class="music" id="music">
+    <p class="music-hint" id="music-hint" role="status">Apasă pentru muzică de Crăciun ♪</p>
+    <button class="music-btn" id="music-btn" type="button" aria-pressed="false" aria-label="Pornește muzica de Crăciun">
+      <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="music-icon" aria-hidden="true">🔔</span>
+      <span class="music-text" id="music-text">Muzică</span>
+    </button>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
